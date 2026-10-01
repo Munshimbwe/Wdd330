@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthPulse Enterprise Suite</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>UbumiHealth Enterprise Suite</title>
+    <link rel="stylesheet" href="styles/siteplan.css">
 </head>
 <body>
     <div class="container">
         <!-- Header & Navigation Control Bar -->
         <header class="app-header">
             <div class="brand">
-                <h1>HealthPulse <span class="enterprise-tag">Enterprise</span></h1>
+                <h1>UbumiHealth <span class="enterprise-tag">Enterprise</span></h1>
                 <span id="net-status" class="offline-badge">Online</span>
             </div>
             
             <nav class="nav-tabs">
                 <button class="tab-btn active" data-target="vitals-tab">Pediatric Vitals</button>
-                <button class="tab-btn active" data-target="screener-tab">Organ & Cancer Risk</button>
+                <button class="tab-btn" data-target="screener-tab">Organ & Cancer Risk</button>
                 <button class="tab-btn" data-target="fhir-tab">FHIR Records</button>
                 <a href="siteplan.html" class="tab-btn" style="text-decoration:none;">Site Plan</a>
             </nav>
@@ -68,15 +68,16 @@
                         <div class="form-group">
                             <label for="screening-type">Select Screening Module</label>
                             <select id="screening-type">
+                                <option value="asthma_respiratory">Pediatric Asthma & Viral Chest Infection Screener</option>
+                                <option value="tuberculosis">Tuberculosis (TB) Symptom & Exposure Screener</option>
+                                <option value="hiv_exposure">HIV Risk & Maternal Transmission Screener</option>
                                 <option value="renal">Renal & Kidney Health Assessment</option>
                                 <option value="breast">Breast Health Symptom Review</option>
-                                <option value="metabolic">Metabolic & Diabetes Risk Index</option>
+                                <option value="prostate">Prostate Urinary Symptoms (IPSS)</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label><input type="checkbox" name="symptom" value="fatigue"> Persistent Unexplained Fatigue</label>
-                            <label><input type="checkbox" name="symptom" value="pain"> Chronic localized pain or swelling</label>
-                            <label><input type="checkbox" name="symptom" value="unstable"> Rapid unexplained weight fluctuation</label>
+                        <div class="form-group" id="dynamic-symptoms-container">
+                        <!-- Dynamic questions for TB, HIV, Asthma, etc., load here -->
                         </div>
                         <button type="submit" class="btn-primary">Calculate Risk Score</button>
                     </form>
@@ -95,7 +96,7 @@
         </main>
 
         <footer class="app-footer">
-            <p>&copy; 2026 HealthPulse Enterprise Suite. Offline-Ready PWA.</p>
+            <p>&copy; 2026 UbumiHealth Enterprise Suite. Offline-Ready PWA. Brian Munshimbwe Kafwanka</p>
         </footer>
     </div>
 

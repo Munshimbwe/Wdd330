@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UbumiHealth Enterprise Suite - Site Plan</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="siteplan-header">
+        <h1>UbumiHealth Enterprise Suite</h1>
+        <p>Project Site Plan & Architecture Documentation</p>
+        <p><strong>Developer:</strong> Brian Munshimbwe Kafwanka</p>
+    </header>
+
+    <main class="siteplan-container">
+        <section>
+            <h2>1. Overview & Personal Motivation</h2>
+            <p>UbumiHealth is an offline-first PWA built to support rural health workers, clinics, and parents dealing with acute pediatric emergencies, asthma, viral chest infections, and infectious disease screenings in disconnected environments across Zambia.</p>
+        </section>
+
+        <section>
+            <h2>2. Target Audience</h2>
+            <ul>
+                <li>Parents and guardians monitoring infant and child respiratory health at night.</li>
+                <li>Community health workers and traveling nurses in remote rural clinics.</li>
+                <li>Public health coordinators requiring anonymized FHIR epidemiological data syncs.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Color Palette & Typography</h2>
+            <div class="color-swatches">
+                <div style="background: #0f766e; color: #fff; padding: 10px;">Primary Teal (#0f766e)</div>
+                <div style="background: #0369a1; color: #fff; padding: 10px;">Secondary Blue (#0369a1)</div>
+                <div style="background: #b91c1c; color: #fff; padding: 10px;">Danger Red (#b91c1c)</div>
+                <div style="background: #15803d; color: #fff; padding: 10px;">Success Green (#15803d)</div>
+            </div>
+            <p><strong>Font Stack:</strong> System native stack for instant offline rendering.</p>
+        </section>
+
+        <section>
+            <h2>4. ES Modules Architecture</h2>
+            <ul>
+                <li><code>main.js</code> &mdash; Entry point & event binder</li>
+                <li><code>Store.mjs</code> &mdash; Pub/Sub state manager</li>
+                <li><code>HealthDataService.mjs</code> &mdash; JSON rules & OpenFDA loader</li>
+                <li><code>VitalsTracker.mjs</code> &mdash; WHO MUAC & Respiratory triage</li>
+                <li><code>SymptomScreener.mjs</code> &mdash; Asthma, TB, HIV & Organ risk evaluator</li>
+                <li><code>TelehealthFHIRService.mjs</code> &mdash; HL7 FHIR v4 converter</li>
+                <li><code>AnalyticsSyncEngine.mjs</code> &mdash; SHA-256 Web Crypto hashing & outbox</li>
+                <li><code>AccessibilityAudioService.mjs</code> &mdash; Web Speech TTS engine</li>
+                <li><code>sw.js</code> &mdash; Cache-First Service Worker</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Brian Munshimbwe Kafwanka. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

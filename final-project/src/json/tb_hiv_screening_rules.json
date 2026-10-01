@@ -1,0 +1,50 @@
+{
+  "asthma_respiratory": {
+    "title": "Pediatric Asthma & Viral Chest Infection Screener",
+    "moderateThreshold": 2,
+    "highThreshold": 4,
+    "questions": [
+      { "id": "q1", "label": "Frequent, recurring dry cough, especially at night or early morning", "weight": 1 },
+      { "id": "q2", "label": "Audible whistling or wheezing sound when breathing out", "weight": 2 },
+      { "id": "q3", "label": "Visible chest indrawing (skin sucking in around ribs/neck during breaths)", "weight": 2 },
+      { "id": "q4", "label": "History of rapid breathing or shortness of breath with physical activity", "weight": 2 }
+    ],
+    "recommendations": {
+      "Low": "Normal respiratory indicators. Monitor for seasonal viral triggers.",
+      "Moderate": "Moderate risk of pediatric airway hyper-reactivity or viral bronchiolitis. Keep rescue protocols ready and consult a clinician.",
+      "High": "High risk of acute respiratory distress / asthma exacerbation. Urgent clinical evaluation required immediately."
+    }
+  },
+  "tuberculosis": {
+    "title": "Tuberculosis (TB) Exposure & Symptom Screener",
+    "moderateThreshold": 2,
+    "highThreshold": 4,
+    "questions": [
+      { "id": "q1", "label": "Persistent cough lasting more than 2 weeks", "weight": 2 },
+      { "id": "q2", "label": "Unexplained weight loss, failure to thrive, or lack of appetite", "weight": 2 },
+      { "id": "q3", "label": "Drenching night sweats or recurring afternoon/evening fevers", "weight": 2 },
+      { "id": "q4", "label": "Known close household contact with an active TB patient", "weight": 3 }
+    ],
+    "recommendations": {
+      "Low": "Low clinical index for active TB. Continue standard wellness tracking.",
+      "Moderate": "Moderate TB risk indicators present. Schedule a sputum smear or GeneXpert test at the local clinic.",
+      "High": "High probability score for Tuberculosis. Immediate clinical isolation, chest X-ray, and evaluation required."
+    }
+  },
+  "hiv_exposure": {
+    "title": "HIV Risk & Exposure Symptom Screener",
+    "moderateThreshold": 2,
+    "highThreshold": 4,
+    "questions": [
+      { "id": "q1", "label": "Maternal history of positive HIV status during pregnancy or breastfeeding", "weight": 2 },
+      { "id": "q2", "label": "Recurrent severe infections, persistent diarrhea, or chronic oral thrush", "weight": 2 },
+      { "id": "q3", "label": "Severe slow growth or developmental milestone delays in infants", "weight": 2 },
+      { "id": "q4", "label": "Unexplained persistent swollen lymph nodes", "weight": 1 }
+    ],
+    "recommendations": {
+      "Low": "No primary exposure indicators noted. Maintain standard routine immunizations.",
+      "Moderate": "Moderate risk markers identified. Counsel for voluntary HIV counseling and testing (VCT) or infant PCR follow-up.",
+      "High": "High risk score for pediatric/adult HIV indicator conditions. Prioritize urgent clinical testing and ART referral."
+    }
+  }
+}
