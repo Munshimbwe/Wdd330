@@ -3,104 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UbumiHealth Enterprise Suite - Multi-organ clinical triage and offline-first PWA.">
+    <meta name="author" content="Academic Submission">
+    <meta name="theme-color" content="#2b7a78">
     <title>UbumiHealth Enterprise Suite</title>
-    <link rel="stylesheet" href="styles/siteplan.css">
+    <link rel="stylesheet" href="./styles/siteplan.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header & Navigation Control Bar -->
-        <header class="app-header">
-            <div class="brand">
-                <h1>UbumiHealth <span class="enterprise-tag">Enterprise</span></h1>
-                <span id="net-status" class="offline-badge">Online</span>
-            </div>
+    <header class="app-header">
+        <div class="header-brand">
             
-            <nav class="nav-tabs">
-                <button class="tab-btn active" data-target="vitals-tab">Pediatric Vitals</button>
-                <button class="tab-btn" data-target="screener-tab">Organ & Cancer Risk</button>
-                <button class="tab-btn" data-target="fhir-tab">FHIR Records</button>
-                <a href="siteplan.html" class="tab-btn" style="text-decoration:none;">Site Plan</a>
-            </nav>
+            <img src="./src/images/nkalamu.webp" alt="UbumiHealth Logo" class="app-logo">
+            <h1>UbumiHealth Enterprise Suite</h1>
+        </div>
+        <div class="header-controls">
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span>🌙 Dark Mode</span>
+            </label>
+        </div>
+    </header>
+    <!-- Navigation Tabs -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" data-target="screener-section">Clinical Screener</button>
+        <button class="tab-btn" data-target="dashboard-section">Dashboard & Analytics</button>
+    </nav>
 
-            <div class="accessibility-controls">
-                <label><input type="checkbox" id="theme-toggle"> 🌙 Dark Mode</label>
+    <main class="app-main">
+        <!-- Screener Tab Content -->
+        <section id="screener-section" class="tab-content active">
+            <h2>Multi-Organ & Risk Screener</h2>
+            <p>Select a clinical module and check all applicable symptoms to run local triage.</p>
+
+            <div class="form-group">
+                <label for="screening-type">Select Screening Module</label>
+                <select id="screening-type" class="form-control">
+                    <option value="tuberculosis">Tuberculosis (TB) Screener</option>
+                    <option value="hiv_exposure">HIV Risk & Exposure</option>
+                    <option value="asthma_respiratory">Pediatric Asthma & Respiratory</option>
+                    <option value="renal">Renal & Kidney Health</option>
+                    <option value="breast">Breast Health Review</option>
+                    <option value="prostate">Prostate Urinary Symptoms</option>
+                </select>
             </div>
-        </header>
 
-        <!-- Main Workspace -->
-        <main>
-            <!-- Tab 1: Pediatric Vitals & MUAC Screener -->
-            <section id="vitals-tab" class="tab-content active">
-                <div class="card-form">
-                    <h2>Pediatric Malnutrition & Vitals Screener</h2>
-                    <p>Evaluate WHO MUAC standards and respiratory thresholds locally.</p>
-                    <form id="vitals-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="patient-id">Patient Identifier / ID</label>
-                                <input type="text" id="patient-id" required placeholder="e.g. PAT-9042">
-                            </div>
-                            <div class="form-group">
-                                <label for="patient-age">Age (Months, 0-60)</label>
-                                <input type="number" id="patient-age" min="0" max="60" required placeholder="e.g. 24">
-                            </div>
-                            <div class="form-group">
-                                <label for="muac-val">MUAC Measurement (cm)</label>
-                                <input type="number" step="0.1" id="muac-val" required placeholder="e.g. 11.8">
-                            </div>
-                            <div class="form-group">
-                                <label for="resp-rate">Respiration Rate (BPM)</label>
-                                <input type="number" id="resp-rate" required placeholder="e.g. 45">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-primary">Evaluate Patient Triage</button>
-                    </form>
-                    <div id="vitals-output" class="results-container"></div>
+            <form id="symptom-screener-form">
+                <!-- Dynamic questions render inside this container -->
+                <div id="dynamic-symptoms-container" class="symptoms-box"></div>
+                
+                <button type="submit" class="btn-primary" style="margin-top: 15px;">Calculate Risk Score</button>
+            </form>
+
+            <!-- Triage Results Output Card -->
+            <div id="triage-output-card" class="triage-card" style="margin-top: 25px;">
+                <h3>Assessment Results</h3>
+                <p>Run an evaluation above to view triage recommendations and FHIR conversion options.</p>
+            </div>
+
+            <!-- Medication Safety & OpenFDA Lookup Card -->
+            <div class="triage-card" style="margin-top: 25px; border-left: 4px solid #3aafa9;">
+                <h3>Medication Safety & OpenFDA Lookup</h3>
+                <p>Search active drug safety alerts, recalls, or compliance warnings.</p>
+                <div class="form-group" style="display: flex; gap: 10px; margin-top: 10px;">
+                    <input type="text" id="drug-search-input" class="form-control" placeholder="Enter drug name (e.g., amoxicillin, paracetamol)..." style="flex: 1;">
+                    <button id="check-drug-btn" class="btn-primary" type="button">Check Recalls</button>
                 </div>
-            </section>
+                <div id="drug-result-container" style="margin-top: 15px;"></div>
+            </div>
 
-            <!-- Tab 2: Organ & Cancer Symptom Risk Screener -->
-            <section id="screener-tab" class="tab-content">
-                <div class="card-form">
-                    <h2>Multi-Organ & Risk Screener</h2>
-                    <p>Run validated symptom checks for clinical triage review.</p>
-                    <form id="screener-form">
-                        <div class="form-group">
-                            <label for="screening-type">Select Screening Module</label>
-                            <select id="screening-type">
-                                <option value="asthma_respiratory">Pediatric Asthma & Viral Chest Infection Screener</option>
-                                <option value="tuberculosis">Tuberculosis (TB) Symptom & Exposure Screener</option>
-                                <option value="hiv_exposure">HIV Risk & Maternal Transmission Screener</option>
-                                <option value="renal">Renal & Kidney Health Assessment</option>
-                                <option value="breast">Breast Health Symptom Review</option>
-                                <option value="prostate">Prostate Urinary Symptoms (IPSS)</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="dynamic-symptoms-container">
-                        <!-- Dynamic questions for TB, HIV, Asthma, etc., load here -->
-                        </div>
-                        <button type="submit" class="btn-primary">Calculate Risk Score</button>
-                    </form>
-                    <div id="screener-output" class="results-container"></div>
+            <!-- Regional Metadata & RestCountries Lookup Card -->
+            <div class="triage-card" style="margin-top: 25px; border-left: 4px solid #2b7a78;">
+                <h3>Regional & Country Metadata (RestCountries API)</h3>
+                <p>Select a deployment region to load local health metadata and emergency routing.</p>
+                <div class="form-group" style="display: flex; gap: 10px; margin-top: 10px;">
+                    <select id="country-select" class="form-control" style="flex: 1;">
+                        <option value="zambia">Zambia</option>
+                        <option value="south africa">South Africa</option>
+                        <option value="kenya">Kenya</option>
+                        <option value="nigeria">Nigeria</option>
+                    </select>
+                    <button id="load-country-btn" class="btn-primary" type="button">Load Metadata</button>
                 </div>
-            </section>
+                <div id="country-result-container" style="margin-top: 15px;"></div>
+            </div>
+        </section>
 
-            <!-- Tab 3: FHIR Logs & Telehealth Export -->
-            <section id="fhir-tab" class="tab-content">
-                <div class="card-form">
-                    <h2>HL7 FHIR v4 Observation Records</h2>
-                    <p>Generated clinical payloads ready for secure server export.</p>
-                    <div id="fhir-records-list"></div>
-                </div>
-            </section>
-        </main>
+        <!-- Dashboard Tab Content -->
+        <section id="dashboard-section" class="tab-content">
+            <h2>Analytics & Outbox Dashboard</h2>
+            <p>Overview of synced clinical sessions and local offline outbox queues.</p>
+            <div id="dashboard-container" style="margin-top: 20px;"></div>
+        </section>
+    </main>
 
-        <footer class="app-footer">
-            <p>&copy; 2026 UbumiHealth Enterprise Suite. Offline-Ready PWA. Brian Munshimbwe Kafwanka</p>
-        </footer>
-    </div>
-
-    <!-- Main Module Script Entry Point -->
-    <script type="module" src="src/js/main.js"></script>
+    <!-- App Footer -->
+    <footer class="app-footer" style="text-align: center; padding: 20px; margin-top: 40px; background: var(--card-bg, #f4f4f4); border-top: 1px solid #ddd; font-size: 14px; color: #666;">
+        <p><strong>&copy; 2026 Brian Munshimbwe Kafwanka - UbumiHealth Enterprise Suite</strong> v1.0.0 &bull; Academic PWA Final Project</p>
+        <p style="margin: 5px 0;">Powered by OpenFDA Drug Safety &amp; RestCountries APIs | Offline-First Architecture</p>
+        <p style="font-size: 12px; color: #88; margin-top: 5px;">&copy; 2026 UbumiHealth Enterprise Solutions. All rights reserved.</p>
+    </footer>
+    <!-- Main Entry Script Module -->
+    <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

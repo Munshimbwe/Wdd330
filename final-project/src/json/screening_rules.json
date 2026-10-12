@@ -1,0 +1,23 @@
+{
+  "renal": {
+    "title": "Renal & Kidney Health Assessment",
+    "questions": [
+      { "id": "renal_swelling", "label": "Facial or lower limb swelling (oedema)" },
+      { "id": "renal_urine", "label": "Changes in urination frequency or dark/bloody urine" }
+    ]
+  },
+  "breast": {
+    "title": "Breast Health Symptom Review",
+    "questions": [
+      { "id": "breast_lump", "label": "New palpable lump or thickening in breast tissue" },
+      { "id": "breast_skin", "label": "Skin dimpling or nipple retraction" }
+    ]
+  },
+  "prostate": {
+    "title": "Prostate Urinary Symptoms (IPSS)",
+    "questions": [
+      { "id": "prostate_stream", "label": "Weak urinary stream or straining to urinate" },
+      { "id": "prostate_night", "label": "Frequent waking at night to urinate (nocturia)" }
+    ]
+  }
+}
