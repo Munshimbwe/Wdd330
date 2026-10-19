@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../wdd231"
 		}
 	],
 	"settings": {}
